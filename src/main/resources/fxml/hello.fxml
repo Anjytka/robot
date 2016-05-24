@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<?import layouttests.migfxml.sample1.*?>
+
+<!--<MigPane id="rootPane" fx:controller="npp.robot.GenerateDataControllertroller"-->
+        <!--styleClass="main-panel"-->
+        <!--layout="insets 20"-->
+        <!--cols="[label, pref!][grow, 50::]"-->
+        <!--rows=""-->
+        <!--xmlns:fx="http://javafx.com/fxml">-->
+
+    <!--<Label text="Нормальная заполненность бака:" /> <TextField fx:id="fullNorm" prefColumnCount="100" MigPane.cc="growx, wrap" />-->
+    <!--<Label text="Допустимая разница фона эл-та и конт.:" />	<TextField fx:id="RNorm" prefColumnCount="100" MigPane.cc="growx, wrap" />-->
+    <!--<Label text="Опасность опускания эл-та:" /> <TextField fx:id="putBackDanger" prefColumnCount="100" MigPane.cc="growx, wrap" />-->
+    <!--<Label text="Опасность перемещения робота:" />	<TextField fx:id="moveDanger" prefColumnCount="100" MigPane.cc="growx, wrap" />-->
+    <!--<Label text="Приемлимая дистанция перемещения:" /> <TextField fx:id="distMinNorm" prefColumnCount="100" MigPane.cc="growx, wrap" />-->
+
+    <!--<Button text="Say Hello" onAction="#generate" MigPane.cc="skip, gap :push, gaptop 15, wrap" />-->
+
+    <!--<Label fx:id="messageLabel" styleClass="hello-message" MigPane.cc="span, growx, gaptop 15" />-->
+
+<!--</MigPane >-->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import com.sun.javafx.scene.control.skin.IntegerField?>
+<?import javafx.scene.canvas.Canvas?>
+<?import com.sun.javafx.scene.control.skin.ContextMenuContent.MenuBox?>
+<?import javafx.scene.layout.BorderPane?>
+
+<!--<MenuBox>-->
+    <!--<MenuBar>-->
+        <!--<Menu text="Файл">-->
+            <!--<MenuItem text="Очистить" />-->
+            <!--<MenuItem text="Закрыть" />-->
+        <!--</Menu>-->
+        <!--<Menu text="?">-->
+            <!--<MenuItem text="Справка" />-->
+        <!--</Menu>-->
+    <!--</MenuBar>-->
+<!--</MenuBox>-->
+
+<?import javafx.scene.layout.VBox?>
+<GridPane fx:controller="npp.robot.GenerateDataController" styleClass="main-panel"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+    <VBox spacing="10">
+        <Text text="Заполнение входных данных"
+              GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
+        <Label text="Количество ячеек:"/>
+        <TextField fx:id="uCount"/>
+
+        <Label text="Нормальная заполненность контейнера:"/>
+        <TextField/>
+
+        <Label text="Допустимая разница фона эл-та и контейнера:"/>
+        <TextField/>
+
+        <Label text="Опасность опускания эл-та :"/>
+        <TextField/>
+
+        <Label text="Опасность перемещения робота:"/>
+        <TextField/>
+
+        <Label text="Приемлемая дистанция перемещения:"/>
+        <TextField/>
+
+        <HBox spacing="10" alignment="bottom_right">
+            <Button text="Запуск" onAction="#dataHandler"/>
+        </HBox>
+    </VBox>
+
+</GridPane>
