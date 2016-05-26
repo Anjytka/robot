@@ -91,6 +91,12 @@
             <artifactId>javafx-dialog</artifactId>
             <version>1.2</version>
         </dependency>
+        <dependency>
+            <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.6.1</version>
+        </dependency>
     </dependencies>
 
 </project>

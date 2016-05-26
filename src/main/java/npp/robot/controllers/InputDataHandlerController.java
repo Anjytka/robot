@@ -1,29 +1,32 @@
-package npp.robot;
+package npp.robot.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import npp.robot.core.Place;
+import npp.robot.services.GenerationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GenerateDataController
+public class InputDataHandlerController
 {
-    private static final Logger log = LoggerFactory.getLogger(GenerateDataController.class);
+    private static final Logger log = LoggerFactory.getLogger(InputDataHandlerController.class);
 //
 //    @FXML private TextField firstNameField;
 //    @FXML private TextField lastNameField;
 //    @FXML private Label messageLabel;
-    @FXML
-    private TextField uCount;
+    @FXML private TextField xCount;
+    @FXML private TextField yCount;
 
-
+    private Place place = Place.getInstance();
 
     public void dataHandler() {
 
-        int unitCount = Integer.parseInt(uCount.getText());
+        int xCellCount = Integer.parseInt(xCount.getText());
+        int yCellCount = Integer.parseInt(yCount.getText());
+        log.debug("Count of cells: {} X {}", xCellCount, yCellCount);
+        GenerationService gService = new GenerationService();
+        gService.dataGenerator(xCellCount, yCellCount);
 
-
-        log.debug("It's work");
 //        String firstName = firstNameField.getText();
 //        String lastName = lastNameField.getText();
 //

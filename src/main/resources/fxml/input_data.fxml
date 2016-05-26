@@ -46,7 +46,7 @@
 <!--</MenuBox>-->
 
 <?import javafx.scene.layout.VBox?>
-<GridPane fx:controller="npp.robot.GenerateDataController" styleClass="main-panel"
+<GridPane fx:controller="npp.robot.controllers.InputDataHandlerController" styleClass="main-panel"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
     <VBox spacing="10">
@@ -54,7 +54,9 @@
               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
         <Label text="Количество ячеек:"/>
-        <TextField fx:id="uCount"/>
+        <HBox spacing="10" alignment="center">
+            <TextField fx:id="xCount"/> <Text text="X" /> <TextField fx:id="yCount"/>
+        </HBox>
 
         <Label text="Нормальная заполненность контейнера:"/>
         <TextField/>

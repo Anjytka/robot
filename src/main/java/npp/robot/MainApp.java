@@ -2,15 +2,10 @@ package npp.robot;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import npp.robot.controllers.InputDataHandlerController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,77 +21,13 @@ public class MainApp extends Application {
 
         log.info("Starting Hello JavaFX and Maven demonstration application");
 
-        String fxmlFile = "/fxml/hello.fxml";
+        String fxmlFile = "/fxml/input_data.fxml";
         log.debug("Loading FXML for main view from: {}", fxmlFile);
-        GenerateDataController ctrlGenerate = new GenerateDataController();
+        InputDataHandlerController ctrlGenerate = new InputDataHandlerController();
         FXMLLoader loader = new FXMLLoader();
         loader.setController(ctrlGenerate);
         Parent root = (Parent) loader.load(getClass().getResource(fxmlFile));
         log.debug("Showing JFX scene");
-
-        //root
-//        BorderPane root = new BorderPane();
-//
-//        //menu bar
-//        MenuBar menuBar = new MenuBar();
-//        Menu file = new Menu("Файл");
-//        MenuItem itmClear = new MenuItem("Очистить");
-//        MenuItem itmClose = new MenuItem("Закрыть");
-//
-//        Menu help = new Menu("?");
-//        MenuItem itmHelp = new MenuItem("Справка");
-//
-//
-//        file.getItems().addAll(itmClear,itmClose);
-//        help.getItems().addAll(itmHelp);
-//
-//        menuBar.getMenus().addAll(file,help);
-//
-//        root.setTop(menuBar);
-//
-//        //fields
-//        GridPane grid = new GridPane();
-//        grid.getStyleClass().add("main-panel");
-//        grid.setHgap(10);
-//        grid.setVgap(10);
-//        grid.setPadding(new Insets(10, 25, 10, 25));
-//
-//        VBox vbox = new VBox();
-//        vbox.setSpacing(10);
-//
-//
-//        Text header = new Text("Заполнение входных данных");
-//
-//        Label lblCount = new Label("Количество ячеек:");
-//        TextField txtfCount = new TextField();
-//        txtfCount.setId("fCount");
-//        Label lblFullNorm = new Label("Нормальная заполненность контейнера:");
-//        TextField txtfFullNorm = new TextField();
-//        Label lblRNorm = new Label("Допустимая разница фона эл-та и контейнера:");
-//        TextField txtfRNorm = new TextField();
-//        Label lblPutBackDanger = new Label("Опасность опускания эл-та :");
-//        TextField txtfPutBackDanger = new TextField();
-//        Label lblMoveDanger = new Label("Опасность перемещения робота:");
-//        TextField txtfMoveDanger = new TextField();
-//        Label lblDistNorm = new Label("Приемлемая дистанция перемещения:");
-//        TextField txtfDistNorm = new TextField();
-//
-//        Button btnStart = new Button("Запуск");
-//
-//        btnStart.setOnAction(e -> ctrlGenerate.dataHandler());
-//
-//        vbox.getChildren().addAll(header,
-//                lblCount, txtfCount,
-//                lblFullNorm, txtfFullNorm,
-//                lblRNorm, txtfRNorm,
-//                lblPutBackDanger, txtfPutBackDanger,
-//                lblMoveDanger, txtfMoveDanger,
-//                lblDistNorm, txtfDistNorm,
-//                btnStart
-//        );
-//        grid.addColumn(0,vbox);
-//
-//        root.setCenter(grid);
 
         Scene scene = new Scene(root, 350, 550);
         scene.getStylesheets().add("/styles/styles.css");
