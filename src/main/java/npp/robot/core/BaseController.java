@@ -1,6 +1,7 @@
 package npp.robot.core;
 
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import npp.robot.windows.MainWindow;
 
 /**
@@ -19,6 +20,16 @@ public class BaseController  implements IController {
     public void setView (Node view){
         this.view = view;
     }
+
+//    @Override
+//    public Scene getScene() {
+//        return null;
+//    }
+//
+//    @Override
+//    public void setScene(Scene scene) {
+//
+//    }
 
     @Override
     public void show() {

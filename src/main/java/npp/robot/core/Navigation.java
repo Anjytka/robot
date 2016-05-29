@@ -38,12 +38,19 @@ public class Navigation {
         stage.setScene(scene);
     }
 
-    public IController load(String sUrl)
+    public IController load(String sUrl) {
+        return this.load(sUrl, this.scene.getWidth(), this.scene.getHeight());
+    }
+
+    public IController load(String sUrl, double w, double h)
     {
         try {
 
             //loads the fxml file
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(sUrl));
+            this.stage.setWidth(w);
+            this.stage.setHeight(h);
+
             Node root = fxmlLoader.load();
 
             IController controller = fxmlLoader.getController();

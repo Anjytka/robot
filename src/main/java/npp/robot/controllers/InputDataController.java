@@ -30,7 +30,7 @@ public class InputDataController extends BaseController
         log.debug("Count of cells: {} X {}", xCellCount, yCellCount);
         GenerationService gService = new GenerationService();
         gService.dataGenerator(xCellCount, yCellCount);
-//        MainWindow.getNavigation().load(PlaceController.URL_FXML).show();
+        MainWindow.getNavigation().load(PlaceController.URL_FXML, 800, 650).show();
 //        String firstName = firstNameField.getText();
 //        String lastName = lastNameField.getText();
 //

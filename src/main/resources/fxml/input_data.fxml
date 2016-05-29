@@ -49,33 +49,41 @@
 <GridPane fx:controller="npp.robot.controllers.InputDataController" styleClass="main-panel"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-    <VBox spacing="10">
-        <Text text="Заполнение входных данных"
-              GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <HBox>
+        <Group>
+            <Canvas fx:id="place2" width="400" height="400" style="-fx-background-color: ghostwhite; -fx-border-color: #333333"
+                    translateX="Infinity" translateY="Infinity" layoutX="0" layoutY="0">
+            </Canvas>
+        </Group>
+        <VBox spacing="10">
+            <Text text="Заполнение входных данных"
+                  GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
-        <Label text="Количество ячеек:"/>
-        <HBox spacing="10" alignment="center">
-            <TextField fx:id="xCount"/> <Text text="X" /> <TextField fx:id="yCount"/>
-        </HBox>
+            <Label text="Количество ячеек:"/>
+            <HBox spacing="10" alignment="center">
+                <TextField fx:id="xCount"/> <Text text="X" /> <TextField fx:id="yCount"/>
+            </HBox>
 
-        <Label text="Нормальная заполненность контейнера:"/>
-        <TextField/>
+            <Label text="Нормальная заполненность контейнера:"/>
+            <TextField/>
 
-        <Label text="Допустимая разница фона эл-та и контейнера:"/>
-        <TextField/>
+            <Label text="Допустимая разница фона эл-та и контейнера:"/>
+            <TextField/>
 
-        <Label text="Опасность опускания эл-та :"/>
-        <TextField/>
+            <Label text="Опасность опускания эл-та :"/>
+            <TextField/>
 
-        <Label text="Опасность перемещения робота:"/>
-        <TextField/>
+            <Label text="Опасность перемещения робота:"/>
+            <TextField/>
 
-        <Label text="Приемлемая дистанция перемещения:"/>
-        <TextField/>
+            <Label text="Приемлемая дистанция перемещения:"/>
+            <TextField/>
 
-        <HBox spacing="10" alignment="bottom_right">
-            <Button text="Запуск" onAction="#startGenerateData"/>
-        </HBox>
-    </VBox>
+            <HBox spacing="10" alignment="bottom_right">
+                <Button text="Запуск" onAction="#startGenerateData"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
 
 </GridPane>
