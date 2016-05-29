@@ -46,7 +46,7 @@
 <!--</MenuBox>-->
 
 <?import javafx.scene.layout.VBox?>
-<GridPane fx:controller="npp.robot.controllers.InputDataHandlerController" styleClass="main-panel"
+<GridPane fx:controller="npp.robot.controllers.InputDataController" styleClass="main-panel"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
     <VBox spacing="10">
@@ -74,7 +74,7 @@
         <TextField/>
 
         <HBox spacing="10" alignment="bottom_right">
-            <Button text="Запуск" onAction="#dataHandler"/>
+            <Button text="Запуск" onAction="#startGenerateData"/>
         </HBox>
     </VBox>
 

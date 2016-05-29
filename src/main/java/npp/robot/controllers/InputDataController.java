@@ -2,14 +2,19 @@ package npp.robot.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import npp.robot.core.BaseController;
 import npp.robot.core.Place;
 import npp.robot.services.GenerationService;
+import npp.robot.windows.MainWindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class InputDataHandlerController
+public class InputDataController extends BaseController
 {
-    private static final Logger log = LoggerFactory.getLogger(InputDataHandlerController.class);
+    public static String URL_FXML = "/fxml/input_data.fxml";
+
+    private static final Logger log = LoggerFactory.getLogger(InputDataController.class);
+
 //
 //    @FXML private TextField firstNameField;
 //    @FXML private TextField lastNameField;
@@ -19,14 +24,13 @@ public class InputDataHandlerController
 
     private Place place = Place.getInstance();
 
-    public void dataHandler() {
-
+    public void startGenerateData() {
         int xCellCount = Integer.parseInt(xCount.getText());
         int yCellCount = Integer.parseInt(yCount.getText());
         log.debug("Count of cells: {} X {}", xCellCount, yCellCount);
         GenerationService gService = new GenerationService();
         gService.dataGenerator(xCellCount, yCellCount);
-
+//        MainWindow.getNavigation().load(PlaceController.URL_FXML).show();
 //        String firstName = firstNameField.getText();
 //        String lastName = lastNameField.getText();
 //
@@ -52,5 +56,4 @@ public class InputDataHandlerController
 //            messageLabel.setText("Hello mysterious person");
 //        }
     }
-
 }
