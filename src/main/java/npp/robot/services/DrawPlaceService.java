@@ -73,24 +73,40 @@ public class DrawPlaceService {
     }
 
     public static void drawUnitsOfCell(GraphicsContext gc, Cell cell) {
-        int cellLeftDownX = margin+((cellWidth + 2*margin)*cell.getCoord().getCoordX());
-        int cellLeftDownY = margin + cellHeight + ((cellHeight + 2*margin)*cell.getCoord().getCoordY());
+        DrawPlaceService.drawUnitsOfCell(gc, cell,
+                margin+((cellWidth + 2*margin)*cell.getCoord().getCoordX()),
+                margin + cellHeight + ((cellHeight + 2*margin)*cell.getCoord().getCoordY()),
+                1);
+    }
+
+    public static void drawUnitsOfCell(GraphicsContext gc, Cell cell, int cellLeftDownX, int cellLeftDownY, int flexCoeff) {
         for (int i = 0; i < GeneralProperties.cellColCount; i++) {
             int unitYPrev = cellLeftDownY;
-            int unitUpLeftX = cellLeftDownX + (int)Math.round((cellWidth/GeneralProperties.cellColCount)*i);
+            int unitUpLeftX = cellLeftDownX + (int)Math.round((cellWidth*flexCoeff/GeneralProperties.cellColCount)*i);
             for (int j = 0; j < cell.getUnits().get(i).size(); j++) {
                 Unit unit = cell.getUnits().get(i).get(j);
-                int unitUpLeftY = unitYPrev - (int)Math.round(unit.getLength()*cellHeight/GeneralProperties.cellHeight);
+                int unitUpLeftY = unitYPrev - (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.cellHeight);
                 gc.setFill(randomColor(unit));
                 gc.fillRect(
                     unitUpLeftX,
                     unitUpLeftY,
-                    (int)Math.round((cellWidth/GeneralProperties.cellColCount)),
-                    (int)Math.round(unit.getLength()*cellHeight/GeneralProperties.cellHeight)
+                    (int)Math.round((cellWidth*flexCoeff/GeneralProperties.cellColCount)),
+                    (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.cellHeight)
                 );
-                unitYPrev -= (int)Math.round(unit.getLength()*cellHeight/GeneralProperties.cellHeight);
+                unitYPrev -= (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.cellHeight);
             }
         }
+    }
+
+    public static void markSelectedCell(GraphicsContext gc, Cell cell) {
+        gc.setLineWidth(2);
+        gc.setStroke(Color.BLUE);
+        gc.strokeRect(
+                margin + ((cellWidth + 2*margin)*cell.getCoord().getCoordX()) - margin/2,
+                margin + ((cellHeight + 2*margin)*cell.getCoord().getCoordY()) - margin/2,
+                margin + cellWidth,
+                margin + cellHeight
+        );
     }
 
     @NotNull

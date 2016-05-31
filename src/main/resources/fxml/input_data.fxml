@@ -80,7 +80,7 @@
             <TextField/>
 
             <HBox spacing="10" alignment="bottom_right">
-                <Button text="Запуск" onAction="#startGenerateData"/>
+                <Button text="Генерация данных" onAction="#startGenerateData"/>
             </HBox>
         </VBox>
     </HBox>

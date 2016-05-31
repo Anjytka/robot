@@ -13,8 +13,6 @@ public class InputDataController extends BaseController
 {
     public static String URL_FXML = "/fxml/input_data.fxml";
 
-    private static final Logger log = LoggerFactory.getLogger(InputDataController.class);
-
 //
 //    @FXML private TextField firstNameField;
 //    @FXML private TextField lastNameField;
