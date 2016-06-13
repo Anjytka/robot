@@ -50,11 +50,11 @@
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
     <HBox>
-        <Group>
-            <Canvas fx:id="place2" width="400" height="400" style="-fx-background-color: ghostwhite; -fx-border-color: #333333"
-                    translateX="Infinity" translateY="Infinity" layoutX="0" layoutY="0">
-            </Canvas>
-        </Group>
+        <!--<Group>-->
+            <!--<Canvas fx:id="place2" width="400" height="400" style="-fx-background-color: ghostwhite; -fx-border-color: #333333"-->
+                    <!--translateX="Infinity" translateY="Infinity" layoutX="0" layoutY="0">-->
+            <!--</Canvas>-->
+        <!--</Group>-->
         <VBox spacing="10">
             <Text text="Заполнение входных данных"
                   GridPane.columnIndex="0" GridPane.rowIndex="0"/>
@@ -64,20 +64,22 @@
                 <TextField fx:id="xCount"/> <Text text="X" /> <TextField fx:id="yCount"/>
             </HBox>
 
-            <Label text="Нормальная заполненность контейнера:"/>
-            <TextField/>
+            <Label text="Достаточная заполненность контейнера:"/>
+            <TextField fx:id="suffFill"/>
 
             <Label text="Допустимая разница фона эл-та и контейнера:"/>
-            <TextField/>
+            <TextField fx:id="normRadDiff"/>
 
             <Label text="Опасность опускания эл-та :"/>
-            <TextField/>
+            <TextField fx:id="dangerBack"/>
 
             <Label text="Опасность перемещения робота:"/>
-            <TextField/>
+            <TextField fx:id="dangerMove"/>
 
             <Label text="Приемлемая дистанция перемещения:"/>
-            <TextField/>
+            <TextField fx:id="permitDist"/>
+
+            <CheckBox fx:id="maxFilling" text="Заполнять контейнер максимально" />
 
             <HBox spacing="10" alignment="bottom_right">
                 <Button text="Генерация данных" onAction="#startGenerateData"/>

@@ -1,7 +1,7 @@
-package npp.robot.core;
+package npp.robot.controllers;
 
 import javafx.scene.Node;
-import javafx.scene.Scene;
+import npp.robot.core.Place;
 import npp.robot.windows.MainWindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 public class BaseController  implements IController {
 
     public static final Logger log = LoggerFactory.getLogger(BaseController.class);
+    public static Place place = Place.getInstance();
+
     private Node view;
 
     @Override

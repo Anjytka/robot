@@ -41,60 +41,6 @@ public class MainWindow extends Application {
         stage.setTitle("Входные данные");
         stage.show();
 
-        //navigate to first view
         MainWindow.getNavigation().load(InputDataController.URL_FXML).show();
-
-//        log.debug("Showing JFX scene");
-//        Group root = new Group();
-//        Canvas canvas = new Canvas( 400, 200 );
-//        root.getChildren().add( canvas );
-//        GraphicsContext gc = canvas.getGraphicsContext2D();
-//        gc.setFill( Color.RED );
-//        gc.setStroke( Color.BLACK );
-//        gc.setLineWidth(2);
-//        Font theFont = Font.font( "Times New Roman", FontWeight.BOLD, 48 );
-//        gc.setFont( theFont );
-//        gc.fillText( "Hello, World!", 60, 50 );
-//        gc.strokeText( "Hello, World!", 60, 50 );
-//
-//        stage.setTitle("Входные данные");
-//        stage.show();
-//
-//        stage.setScene(new Scene(root));
-//        stage.show();
-//
-//        gc.applyEffect(new GaussianBlur());
-
-
-//        log.info("Starting Hello JavaFX and Maven demonstration application");
-//
-//        String fxmlFile = "/fxml/input_data.fxml";
-//        log.debug("Loading FXML for main view from: {}", fxmlFile);
-//        InputDataController ctrlGenerate = new InputDataController();
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setController(ctrlGenerate);
-//        Parent root = (Parent) loader.load(getClass().getResource(fxmlFile));
-//        log.debug("Showing JFX scene");
-//
-//        Scene scene = new Scene(root, 350, 550);
-//        scene.getStylesheets().add("/styles/styles.css");
-//
-//        stage.setTitle("Входные данные");
-//        stage.setScene(scene);
-
-
-//        Canvas canvas = new Canvas( 400, 200 );
-//        root.getChildren().add( canvas );
-//        GraphicsContext gc = place.getGraphicsContext2D();
-//        gc.setFill( Color.RED );
-//        gc.setStroke( Color.BLACK );
-//        gc.setLineWidth(2);
-//        Font theFont = Font.font( "Times New Roman", FontWeight.BOLD, 48 );
-//        gc.setFont( theFont );
-//        gc.fillText( "Hello, World!", 60, 50 );
-//        gc.strokeText( "Hello, World!", 60, 50 );
-
-
-//        stage.show();
     }
 }

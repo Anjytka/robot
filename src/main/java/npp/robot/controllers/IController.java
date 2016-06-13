@@ -1,4 +1,4 @@
-package npp.robot.core;
+package npp.robot.controllers;
 
 import javafx.scene.Node;
 import javafx.scene.Scene;

@@ -6,13 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import npp.robot.controllers.IController;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by mac on 28.05.16.
- */
 public class Navigation {
 
     private final Stage stage;
@@ -22,16 +20,14 @@ public class Navigation {
     private List<IController> controllers = new ArrayList<>();
 
 
-    public Navigation(Stage stage)
-    {
+    public Navigation(Stage stage) {
         this.stage = stage;
         scene = new Scene(new Pane());
         scene.getStylesheets().add("/styles/styles.css");
         stage.setScene(scene);
     }
 
-    public Navigation(Stage stage, int w, int h)
-    {
+    public Navigation(Stage stage, int w, int h) {
         this.stage = stage;
         scene = new Scene(new Pane(), w, h);
         scene.getStylesheets().add("/styles/styles.css");
@@ -42,8 +38,7 @@ public class Navigation {
         return this.load(sUrl, this.scene.getWidth(), this.scene.getHeight());
     }
 
-    public IController load(String sUrl, double w, double h)
-    {
+    public IController load(String sUrl, double w, double h) {
         try {
 
             //loads the fxml file
@@ -64,8 +59,7 @@ public class Navigation {
         return null;
     }
 
-    public void Show(IController controller)
-    {
+    public void Show(IController controller) {
         try {
             scene.setRoot((Parent) controller.getView());
             controllers.add(controller);
@@ -77,23 +71,20 @@ public class Navigation {
         }
     }
 
-    public void GoBack()
-    {
-        if (controllers.size() > 1)
-        {
+    public Stage getStage() {
+        return this.stage;
+    }
+
+    public void GoBack() {
+        if (controllers.size() > 1) {
             controllers.remove(controllers.get(controllers.size() - 1));
             scene.setRoot((Parent) controllers.get(controllers.size() - 1).getView());
         }
-
-        System.out.println("GoBack: " + controllers.get(controllers.size() - 1).toString() + ". Total scenes: " + controllers.size());
     }
 
 
-    public void ClearHistory()
-    {
+    public void ClearHistory() {
         while (controllers.size() > 1)
             controllers.remove(0);
-
-        System.out.println("ClearHistory. Total scenes: " + controllers.size());
     }
 }

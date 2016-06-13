@@ -1,8 +1,5 @@
 package npp.robot.models;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-
 /**
  * Created by mac on 25.05.16.
  */
@@ -12,20 +9,17 @@ public class Unit {
 
     private double length;
 
-    private double width;
+    private double diameter;
 
     private boolean blocked;
-
-    private boolean packed;
 
     private int col;
 
     public Unit() {
         this.radiation = 0;
         this.length = 0;
-        this.width = 1;
+        this.diameter = 0.05;
         this.blocked = false;
-        this.packed = false;
         this.col = 0;
     }
 
@@ -45,8 +39,12 @@ public class Unit {
         this.length = length;
     }
 
-    public double getWidth() {
-        return width;
+    public double getDiameter() {
+        return diameter;
+    }
+
+    public void setDiameter(double diameter) {
+        this.diameter = diameter;
     }
 
     public boolean isBlocked() {
@@ -57,18 +55,6 @@ public class Unit {
         this.blocked = blocked;
     }
 
-    public boolean isPacked() {
-        return packed;
-    }
-
-    public void setPacked(boolean packed) {
-        this.packed = packed;
-    }
-
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
     public int getCol() {
         return col;
     }
@@ -77,15 +63,27 @@ public class Unit {
         this.col = col;
     }
 
+    //region Additional methods
     public double getVolume() {
-        return this.length * this.width;
+        return this.length;
+    }
+
+    public double getRealVolume() {
+        return this.getReadAreaBottom() * this.length;
+    }
+
+    public double getReadAreaBottom() {
+        return Math.PI*Math.pow(this.diameter, 2)/4;
     }
 
     public String print() {
         String str = "\nRad: "+this.getRadiation() + "\n"+
-        "Len: "+this.getLength() + "\n"+
+        "Vol: "+this.getRealVolume() + "\n"+
         "Col: "+this.getCol() + "\n"+
-        "Blocked: "+this.isBlocked() + "\n";
+        "Blocked: "+this.isBlocked();
         return str;
     }
+    //endregion
+
+
 }

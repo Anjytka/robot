@@ -1,58 +1,28 @@
 package npp.robot.services;
 
+import javafx.geometry.VPos;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
-import npp.robot.core.Place;
+import javafx.scene.text.Font;
+import npp.robot.core.GeneralProperties;
 import npp.robot.models.Cell;
 import npp.robot.models.Unit;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by mac on 29.05.16.
  */
-public class DrawPlaceService {
-
-
-    private static final Logger log = LoggerFactory.getLogger(DrawPlaceService.class);
-    private static Place place = Place.getInstance();
+public class DrawPlaceService extends BaseService {
 
     private static int cellWidth = 30;
     private static int cellHeight = 40;
     private static int margin = 10;
 
-
-    public static void drawShapes(GraphicsContext gc) {
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLUE);
-        gc.setLineWidth(5);
-        gc.strokeLine(40, 10, 10, 40);
-        gc.fillOval(10, 60, 30, 30);
-        gc.strokeOval(60, 60, 30, 30);
-        gc.fillRoundRect(110, 60, 30, 30, 10, 10);
-        gc.strokeRoundRect(160, 60, 30, 30, 10, 10);
-        gc.fillArc(10, 110, 30, 30, 45, 240, ArcType.OPEN);
-        gc.fillArc(60, 110, 30, 30, 45, 240, ArcType.CHORD);
-        gc.fillArc(110, 110, 30, 30, 45, 240, ArcType.ROUND);
-        gc.strokeArc(10, 160, 30, 30, 45, 240, ArcType.OPEN);
-        gc.strokeArc(60, 160, 30, 30, 45, 240, ArcType.CHORD);
-        gc.strokeArc(110, 160, 30, 30, 45, 240, ArcType.ROUND);
-        gc.fillPolygon(new double[]{10, 40, 10, 40},
-                new double[]{210, 210, 240, 240}, 4);
-        gc.strokePolygon(new double[]{60, 90, 60, 90},
-                new double[]{210, 210, 240, 240}, 4);
-        gc.strokePolyline(new double[]{110, 140, 110, 140},
-                new double[]{210, 210, 240, 240}, 4);
-    }
-
     public static void drawCells(GraphicsContext gc) {
-        gc.setLineWidth(2);
         for (int i = 0; i < place.getCells().size(); i++) {
+            gc.setLineWidth(2);
+            gc.setStroke(Color.BLACK);
             Cell cell = place.getCells().get(i);
             gc.strokePolyline(
                     new double[] {
@@ -67,6 +37,16 @@ public class DrawPlaceService {
                         margin + cellHeight + ((cellHeight + 2*margin)*cell.getCoord().getCoordY()),
                         margin+((cellHeight + 2*margin)*cell.getCoord().getCoordY()),
                     }, 4);
+            Font font = new Font("TimesRoman", 10);
+            gc.setLineWidth(0.5);
+            gc.setFont(font);
+            gc.setTextBaseline(VPos.CENTER);
+            gc.strokeText(
+                    String.format("%.2f", cell.getRadiation()),
+                    1.5*margin + ((cellWidth + (2 * margin)) * cell.getCoord().getCoordX()),
+                    2*margin + cellHeight + ((cellHeight + 2*margin)*cell.getCoord().getCoordY()),
+                    cellWidth);
+
             drawUnitsOfCell(gc, cell);
         }
 
@@ -76,36 +56,58 @@ public class DrawPlaceService {
         DrawPlaceService.drawUnitsOfCell(gc, cell,
                 margin+((cellWidth + 2*margin)*cell.getCoord().getCoordX()),
                 margin + cellHeight + ((cellHeight + 2*margin)*cell.getCoord().getCoordY()),
-                1);
+                1, false);
     }
 
-    public static void drawUnitsOfCell(GraphicsContext gc, Cell cell, int cellLeftDownX, int cellLeftDownY, int flexCoeff) {
-        for (int i = 0; i < GeneralProperties.cellColCount; i++) {
+    public static void drawUnitsOfCell(GraphicsContext gc, Cell cell, int cellLeftDownX, int cellLeftDownY, int flexCoeff, boolean needBorder) {
+        for (int i = 0; i < GeneralProperties.getInteger("cell.col.count"); i++) {
             int unitYPrev = cellLeftDownY;
-            int unitUpLeftX = cellLeftDownX + (int)Math.round((cellWidth*flexCoeff/GeneralProperties.cellColCount)*i);
+            int unitUpLeftX = cellLeftDownX + (int)Math.round((cellWidth*flexCoeff/GeneralProperties.getInteger("cell.col.count"))*i);
             for (int j = 0; j < cell.getUnits().get(i).size(); j++) {
                 Unit unit = cell.getUnits().get(i).get(j);
-                int unitUpLeftY = unitYPrev - (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.cellHeight);
+                int unitUpLeftY = unitYPrev - (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.getDouble("cell.height"));
                 gc.setFill(randomColor(unit));
                 gc.fillRect(
                     unitUpLeftX,
                     unitUpLeftY,
-                    (int)Math.round((cellWidth*flexCoeff/GeneralProperties.cellColCount)),
-                    (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.cellHeight)
+                    (int)Math.round((cellWidth*flexCoeff/GeneralProperties.getInteger("cell.col.count"))),
+                    (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.getDouble("cell.height"))
                 );
-                unitYPrev -= (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.cellHeight);
+                if (needBorder) {
+                    gc.setLineWidth(1);
+                    gc.setStroke(Color.BLACK);
+                    gc.strokeRect(
+                            unitUpLeftX,
+                            unitUpLeftY,
+                            (int)Math.round((cellWidth*flexCoeff/GeneralProperties.getInteger("cell.col.count"))),
+                            (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.getDouble("cell.height"))
+                    );
+                    Font font = new Font("TimesRoman", 10);
+                    gc.setLineWidth(0.5);
+                    gc.setFont(font);
+                    gc.setStroke(calcTextColor(unit));
+                    gc.setTextBaseline(VPos.TOP);
+                    gc.strokeText(
+                            String.format("%.2f", unit.getRadiation()),
+                            unitUpLeftX + (int)Math.round((cellWidth*flexCoeff/GeneralProperties.getInteger("cell.col.count")))/2 - margin,
+                            unitUpLeftY + (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.getDouble("cell.height"))/2 - margin/2,
+                            (int)Math.round((cellWidth*flexCoeff/GeneralProperties.getInteger("cell.col.count"))));
+
+                }
+                unitYPrev -= (int)Math.round(unit.getLength()*cellHeight*flexCoeff/GeneralProperties.getDouble("cell.height"));
             }
         }
     }
 
     public static void markSelectedCell(GraphicsContext gc, Cell cell) {
-        gc.setLineWidth(2);
+        gc.setLineWidth(1);
         gc.setStroke(Color.BLUE);
+        // in y +2 & in h -4 for marking cell without intersections with borders and text
         gc.strokeRect(
                 margin + ((cellWidth + 2*margin)*cell.getCoord().getCoordX()) - margin/2,
-                margin + ((cellHeight + 2*margin)*cell.getCoord().getCoordY()) - margin/2,
+                margin + ((cellHeight + 2*margin)*cell.getCoord().getCoordY()) - margin/2 + 2,
                 margin + cellWidth,
-                margin + cellHeight
+                margin + cellHeight - 4
         );
     }
 
@@ -117,6 +119,16 @@ public class DrawPlaceService {
         }
         color  = color > 1.0 ? 1.0 : (color < 0.0 ? 0.0 : color);
 
-        return Color.color(color, 1 - color, 0.0);
+        return Color.color(color, 0.0, 0.0);
+    }
+
+    public static Color calcTextColor(Unit unit) {
+        double color = unit.getRadiation();
+        color  = color > 1.0 ? 1.0 : (color < 0.0 ? 0.0 : color);
+        if (unit.isBlocked() || color <= 0.5) {
+            return Color.color(1.0,1.0,1.0);
+        }
+
+        return Color.color(0.0, 0.0, 0.0);
     }
 }
