@@ -92,10 +92,10 @@ public class GroupingService extends BaseService {
         double usefullPutBack = calculatePutBackUsefull(unit);log.debug("PUT BACK {}\n",usefullPutBack);
         if ((usefullCollect > usefullPutBack || Math.abs(usefullCollect - usefullPutBack) <= 0.2
                 ) && usefullCollect != Double.MIN_VALUE) {
-            log.info("UNIT IS COLLECTED");
+            log.debug("UNIT IS COLLECTED");
             return TYRE_PUT_UNIT_IN_CONTAINER;
         }
-        log.info("UNIT IS RETURNED");
+        log.debug("UNIT IS RETURNED");
 
         return TYRE_PUT_UNIT_BACK_IN_CELL;
     }
@@ -158,7 +158,7 @@ public class GroupingService extends BaseService {
                 place.addContainer(container);
                 place.refreshProcessed();
             } else {
-                moveCount += 1;
+                moveCount = 1;
                 place.setCurrentCell(cells.get(0));
             }
         }
@@ -172,10 +172,10 @@ public class GroupingService extends BaseService {
         double usefullChangeContainer = calculateChangeContainerUsefull();log.debug("CHANGE {}\n", usefullChangeContainer);
         double usefullMove            = calculateMoveUsefull();           log.debug("MOVE {}\n", usefullMove);
         if (usefullMove < usefullChangeContainer || place.getNotProcessedCellsCount() == 0) {
-            log.info("CONTAINER IS CHANGED");
+            log.debug("CONTAINER IS CHANGED");
             return TYRE_CHANGE_CONTAINER;
         }
-            log.info("ROBOT IS MOVED");
+            log.debug("ROBOT IS MOVED");
             return TYPE_MOVE;
     }
 

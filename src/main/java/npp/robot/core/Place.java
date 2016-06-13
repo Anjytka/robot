@@ -42,12 +42,7 @@ public class Place {
     private boolean maxFilling = false;
 
     private Place () {
-        this.cells = new ArrayList<>();
-        this.cellsIndexCoord = new ArrayList<>();
-        this.containers = new ArrayList<>();
-        this.currentCell = null;
-        this.currentContainer = new Container();
-        this.containers.add(this.currentContainer);
+        this.clear();
     }
 
     public static synchronized Place getInstance() {
@@ -221,6 +216,15 @@ public class Place {
             }
         }
         return count;
+    }
+
+    public void clear() {
+        this.cells = new ArrayList<>();
+        this.cellsIndexCoord = new ArrayList<>();
+        this.containers = new ArrayList<>();
+        this.currentCell = null;
+        this.currentContainer = new Container();
+        this.containers.add(this.currentContainer);
     }
     //endregion
 

@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.canvas.Canvas?>
 <GridPane fx:controller="npp.robot.controllers.PlaceController" styleClass="main-panel"
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
         <BorderPane style="-fx-fill-width: inherit; -fx-fill-height: inherit;">
@@ -20,22 +21,30 @@
             </left>
             <right>
                 <VBox spacing="10" styleClass="panel">
-                    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                    <padding><Insets top="0" right="10" bottom="10" left="10"/></padding>
                     <Pane fx:id="preview">
                         <!--Pane contains Canvas with currentCell element, which is added from code in PlaceController-->
                     </Pane>
                     <HBox spacing="10">
-                        <Label text="Кол-во перемещений: "/><Label fx:id="moveCount" text="0"/>
+                        <Label text="Кол-во перемещений: "/> <Label fx:id="moveCount" text="0"/>
+                    </HBox>
+                    <HBox styleClass="legend"></HBox>
+                    <HBox spacing="10" minWidth="180">
+                        <Label text="0" alignment="BOTTOM_LEFT"  maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                        <Label text="> 1" alignment="BOTTOM_RIGHT"  maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
                     </HBox>
 
                     <Region prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
                     <HBox spacing="10" alignment="BOTTOM_CENTER">
-                        <Button fx:id="doAll" text="Запуск" alignment="BOTTOM_CENTER" onAction="#doAll" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="doAll" text="Старт" alignment="BOTTOM_CENTER" onAction="#doAll" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
                         <Button fx:id="stop" text="Пауза" alignment="BOTTOM_CENTER" onAction="#stop"  maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
                     </HBox>
                     <HBox spacing="10">
-                        <Button fx:id="makeStep" text="След. шаг" alignment="BOTTOM_CENTER" onAction="#makeStep"/>
-                        <Button fx:id="previewContainers" text="Контейнеры" alignment="BOTTOM_CENTER" onAction="#previewContainers" />
+                        <Button fx:id="makeStep" text="След. шаг" alignment="BOTTOM_CENTER" onAction="#makeStep" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="previewContainers" text="Результат" alignment="BOTTOM_CENTER" onAction="#previewContainers" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
+                    </HBox>
+                    <HBox spacing="10">
+                        <Button fx:id="generate" text="Изменить входные данные" alignment="BOTTOM_CENTER" onAction="#generate" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS"/>
                     </HBox>
                 </VBox>
             </right>

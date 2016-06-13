@@ -36,7 +36,7 @@ public class MainWindow extends Application {
 
     public void start(Stage stage) throws Exception {
 
-        navigation = new Navigation(stage, 350, 500);
+        navigation = new Navigation(stage, 350, 510);
 
         stage.setTitle("Входные данные");
         stage.show();

@@ -11,7 +11,7 @@
     </appender>
 
     <logger name="npp">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
     </logger>
 
     <root>

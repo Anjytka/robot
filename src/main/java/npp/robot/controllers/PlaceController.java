@@ -39,6 +39,8 @@ public class PlaceController extends BaseController implements Initializable {
 
     @FXML private Label moveCount;
 
+    @FXML private Button generate;
+
     private Thread thread;
     private volatile boolean stopped = false;
 
@@ -47,7 +49,9 @@ public class PlaceController extends BaseController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         redrawAllCells();
+        MainWindow.getNavigation().getStage().setTitle("Обработка данных");
         stop.setDisable(true);
+        generate.setDisable(true);
     }
 
     public void doAll() {
@@ -63,7 +67,11 @@ public class PlaceController extends BaseController implements Initializable {
                 GroupingService.ResultData resultData = groupService.startGrouping();
                 ended = resultData.ended;
                 Platform.runLater(() -> {
-                    moveCount.setText(String.valueOf(resultData.movesCount));
+                    if (ended) {
+                        generate.setDisable(false);
+                        stop.setDisable(true);
+                    }
+                    moveCount.setText(String.valueOf(Integer.valueOf(moveCount.getText()) + resultData.movesCount));
                     redrawAllCells();
                     redrawPreview();
                 });
@@ -84,6 +92,7 @@ public class PlaceController extends BaseController implements Initializable {
         try {
             thread.join();
             doAll.setDisable(false);
+            makeStep.setDisable(false);
             stop.setDisable(true);
         } catch (InterruptedException e) {
             log.error("{}", e.getMessage());
@@ -96,11 +105,14 @@ public class PlaceController extends BaseController implements Initializable {
             isInitialized = true;
         }
         doAll.setDisable(false);
-        stop.setDisable(false);
+        stop.setDisable(true);
         GroupingService groupService = new GroupingService();
         GroupingService.ResultData resultData = groupService.startGrouping();
         redrawAllCells();
         redrawPreview();
+        if (ended) {
+            generate.setDisable(false);
+        }
         moveCount.setText(String.valueOf(Integer.valueOf(moveCount.getText()) + resultData.movesCount));
     }
 
@@ -108,6 +120,12 @@ public class PlaceController extends BaseController implements Initializable {
         ContainersTableWindow containersWindow = new ContainersTableWindow();
         containersWindow.initOwner(MainWindow.getNavigation().getStage());
         containersWindow.show();
+    }
+
+    public void generate() {
+        place.clear();
+        MainWindow.getNavigation().getStage().setTitle("Входные данные");
+        MainWindow.getNavigation().goBack(350, 510);
     }
 
     private void makeInitialization() {

@@ -35,7 +35,6 @@
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 .panel {
-    /*-fx-background-color: lightgray;*/
     -fx-background-image: url("../images/background.jpg");
     -fx-min-width: 200px;
     -fx-alignment: top-center;
@@ -50,8 +49,13 @@
     -fx-border-style: solid;
     -fx-border-width: 1px;
     -fx-background-color: #FFF;
-    -fx-min-width: 80px;
     -fx-min-width: 180px;
     -fx-min-height: 240px;
+}
+
+.legend {
+    -fx-min-width: 180px;
+    -fx-min-height: 15px;
+    -fx-background-color: linear-gradient(to right, #000, #F00);
 }
 

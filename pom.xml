@@ -34,19 +34,51 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.zenjava</groupId>-->
+                <!--<artifactId>javafx-maven-plugin</artifactId>-->
+                <!--<version>8.1.5</version>-->
+                <!--<configuration>-->
+
+                    <!--<mainClass>npp.robot.windows.MainWindow</mainClass>-->
+
+                    <!--&lt;!&ndash; only required if signing the jar file &ndash;&gt;-->
+                    <!--<keyStoreAlias>example-user</keyStoreAlias>-->
+                    <!--<keyStorePassword>example-password</keyStorePassword>-->
+                    <!--<allPermissions>true</allPermissions>-->
+
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
-                <groupId>com.zenjava</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>8.1.5</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-
-                    <mainClass>npp.robot.windows.MainWindow</mainClass>
-
-                    <!-- only required if signing the jar file -->
-                    <keyStoreAlias>example-user</keyStoreAlias>
-                    <keyStorePassword>example-password</keyStorePassword>
-                    <allPermissions>true</allPermissions>
-
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>npp.robot.windows.MainWindow</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
 

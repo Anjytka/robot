@@ -75,8 +75,14 @@ public class Navigation {
         return this.stage;
     }
 
-    public void GoBack() {
+    public void goBack() {
+        this.goBack(this.scene.getWidth(), this.scene.getHeight());
+    }
+
+    public void goBack(double w, double h) {
         if (controllers.size() > 1) {
+            this.stage.setWidth(w);
+            this.stage.setHeight(h);
             controllers.remove(controllers.get(controllers.size() - 1));
             scene.setRoot((Parent) controllers.get(controllers.size() - 1).getView());
         }
