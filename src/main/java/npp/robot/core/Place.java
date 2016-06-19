@@ -185,8 +185,8 @@ public class Place {
                 ))
                 .sorted((o1, o2) ->
                         Double.compare(
-                                o2.getRadiation() - this.getCurrentCell().getRadiation(),
-                                o1.getRadiation() - this.getCurrentCell().getRadiation()
+                                o2.getRadiation() - this.getCurrentContainer().getRadiation(),
+                                o1.getRadiation() - this.getCurrentContainer().getRadiation()
                         )
                 )
                 .collect(Collectors.toList());

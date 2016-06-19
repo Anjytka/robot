@@ -30,14 +30,9 @@ public class UnitsTableWindow extends Stage {
         TableView<Unit> unitsTable = new TableView<>();
         unitsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        TableColumn<Unit, String> col = new TableColumn<>("Радиоактивность");
+        TableColumn<Unit, String> col = new TableColumn<>("Радиоактивность, у.е.");
         col.setMinWidth(200);
         col.setCellValueFactory(new PropertyValueFactory<>("radiation"));
-        unitsTable.getColumns().add(col);
-
-        col = new TableColumn<>("Длина");
-        col.setMinWidth(200);
-        col.setCellValueFactory(new PropertyValueFactory<>("length"));
         unitsTable.getColumns().add(col);
 
         unitsTable.setItems(FXCollections.observableList(place.getContainers().get(containerId).getUnits()));

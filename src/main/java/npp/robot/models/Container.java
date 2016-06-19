@@ -80,5 +80,9 @@ public class Container {
                 "RestFull: " + this.getRestFullness();
         return str;
     }
+
+    public long getRestFullnessInPercents() {
+        return Math.round(this.getRestFullness()/this.getFullness()*100);
+    }
     //endregion
 }

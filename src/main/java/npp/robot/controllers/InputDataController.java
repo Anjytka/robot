@@ -24,25 +24,25 @@ public class InputDataController extends BaseController
         int xCellCount = 0;
         int yCellCount = 0;
         try {
-//            xCellCount = Integer.parseInt(xCount.getText());
-//            yCellCount = Integer.parseInt(yCount.getText());
-//            place.setxMaxCellCount(xCellCount);
-//            place.setyMaxCellCount(yCellCount);
-//            place.setSuffFill(Double.parseDouble(suffFill.getText()));
-//            place.setNormRadDiff(Double.parseDouble(normRadDiff.getText()));
-//            place.setDangerBack(Double.parseDouble(dangerBack.getText()));
-//            place.setDangerMove(Double.parseDouble(dangerMove.getText()));
-//            place.setPermitDist(Integer.parseInt(permitDist.getText()));
-
-            xCellCount = Integer.parseInt("10");
-            yCellCount = Integer.parseInt("10");
+            xCellCount = Integer.parseInt(xCount.getText());
+            yCellCount = Integer.parseInt(yCount.getText());
             place.setxMaxCellCount(xCellCount);
             place.setyMaxCellCount(yCellCount);
-            place.setSuffFill(Double.parseDouble("0.8"));    //0.0 .. 1.0
-            place.setNormRadDiff(Double.parseDouble("0.2")); //0.0 .. 1.0
-            place.setDangerBack(Double.parseDouble("0.1"));  //0.0 .. 1.0
-            place.setDangerMove(Double.parseDouble("0.1"));  //0.0 .. 1.0
-            place.setPermitDist(Integer.parseInt("2"));      //1...
+            place.setSuffFill(Double.parseDouble(suffFill.getText()));
+            place.setNormRadDiff(Double.parseDouble(normRadDiff.getText()));
+            place.setDangerBack(Double.parseDouble(dangerBack.getText()));
+            place.setDangerMove(Double.parseDouble(dangerMove.getText()));
+            place.setPermitDist(Integer.parseInt(permitDist.getText()));
+
+//            xCellCount = Integer.parseInt("10");
+//            yCellCount = Integer.parseInt("10");
+//            place.setxMaxCellCount(xCellCount);
+//            place.setyMaxCellCount(yCellCount);
+//            place.setSuffFill(Double.parseDouble("0.8"));    //0.0 .. 1.0
+//            place.setNormRadDiff(Double.parseDouble("0.2")); //0.0 .. 1.0
+//            place.setDangerBack(Double.parseDouble("0.1"));  //0.0 .. 1.0
+//            place.setDangerMove(Double.parseDouble("0.1"));  //0.0 .. 1.0
+//            place.setPermitDist(Integer.parseInt("2"));      //1...
 
             place.setMaxFilling(maxFilling.isSelected());
 

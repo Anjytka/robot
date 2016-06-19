@@ -28,18 +28,18 @@ public class ContainersTableWindow extends Stage {
         TableView<Container> containersTable = new TableView<>();
         containersTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        TableColumn<Container, String> col = new TableColumn<>("Радиоактивность");
-        col.setMinWidth(150);
+        TableColumn<Container, String> col = new TableColumn<>("Радиоактивность, у.е.");
+        col.setMinWidth(200);
         col.setCellValueFactory(new PropertyValueFactory<>("radiation"));
         containersTable.getColumns().add(col);
 
-        col = new TableColumn<>("Не заполненность");
-        col.setMinWidth(150);
-        col.setCellValueFactory(new PropertyValueFactory<>("restFullness"));
+        col = new TableColumn<>("Свободный объем, %");
+        col.setMinWidth(200);
+        col.setCellValueFactory(new PropertyValueFactory<>("restFullnessInPercents"));
         containersTable.getColumns().add(col);
 
         col = new TableColumn<>();
-        col.setMinWidth(150);
+        col.setMinWidth(200);
         col.setCellFactory(new Callback<TableColumn<Container, String>, TableCell<Container, String>>() {
             @Override
             public TableCell<Container, String> call(TableColumn<Container, String> param) {

@@ -130,6 +130,12 @@
             <groupId>org.rapidpm.modul</groupId>
             <artifactId>javafx-dialog</artifactId>
             <version>1.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
